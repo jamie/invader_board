@@ -29,19 +29,38 @@ export default function Fear(props) {
   const [fear, setFear] = useState(0)
   const fearThreshold = props.players * 4
 
+  const addFear = () => {
+    let newFear = fear
+    newFear += 1
+    if (newFear >= fearThreshold) {
+      newFear -= fearThreshold
+      // TODO: FearCard get
+    }
+    setFear(newFear)
+  }
+  const subFear = () => {
+    let newFear = fear
+    if (fear <= 0) {
+      newFear += fearThreshold
+      // TODO: FearCard underflow
+    }
+    newFear -= 1
+    setFear(newFear)
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Fear</Text>
       <View style={styles.buttons}>
         <View style={[styles.button, styles.red]}>
           <Button
-            onPress={() => { setFear(fear - 1) }}
+            onPress={subFear}
             title="-"
           />
         </View>
         <View style={[styles.button, styles.blue]}>
           <Button
-            onPress={() => { setFear(fear + 1) }}
+            onPress={addFear}
             title="+"
           />
         </View>
