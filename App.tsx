@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Adversary from './components/Adversary'
 import Blight from './components/Blight'
+import BlightCard from './components/BlightCard'
 import Events from './components/Events'
 import Fear from './components/Fear'
 import FearCards from './components/FearCards'
@@ -14,23 +15,45 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
+    alignItems: 'stretch',
     justifyContent: 'center',
+  },
+  row: {
+    flex: 3,
+    flexDirection: 'row',
+    alignItems: 'stretch',
+  },
+  shortrow: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'stretch',
+    borderWidth: '2',
   },
 });
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Scenario />
-      <Adversary />
-      <Events />
-      <Terror />
-      <FearCards />
-      <Blight />
-      <Invaders />
-      <Fear players={4}/>
-      <PhaseTracker />
+      <View style={styles.row}>
+        <Scenario />
+        <Adversary />
+      </View>
+      <View style={styles.shortrow}>
+        <Terror />
+        <Fear players={4} />
+        <Blight />
+      </View>
+      <View style={styles.row}>
+        <Events />
+        <FearCards />
+        <BlightCard />
+      </View>
+      <View style={styles.row}>
+        <Invaders />
+      </View>
+      <View style={styles.row}>
+        <PhaseTracker />
+      </View>
     </View>
   );
 }
